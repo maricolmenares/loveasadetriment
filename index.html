@@ -14,7 +14,7 @@
             height: 100vh;
             background-color: white;
             flex-direction: column;
-            font-family: Arial, sans-serif; /* Changed to Arial */
+            font-family: Arial, sans-serif;
         }
 
         .message {
@@ -33,21 +33,21 @@
         .video-container {
             position: relative;
             flex: 1;
-            width: 400px; /* Fixed width for uniform video size */
-            height: 425px; /* Fixed height for uniform video size */
+            width: 400px;
+            height: 425px;
             overflow: hidden;
         }
 
         video {
-            width: 100%; /* Ensures the video fills the container width */
-            height: 100%; /* Ensures the video fills the container height */
+            width: 100%;
+            height: 100%;
             position: absolute;
             top: 0;
             left: 0;
             display: block;
             opacity: 0;
             transition: opacity 0.5s;
-            object-fit: cover; /* Ensures the video covers the container without distortion */
+            object-fit: cover;
         }
 
         .video-container video.visible {
@@ -100,15 +100,15 @@
             background-color: rgba(255, 0, 0, 0.3);
         }
 
+        /* I give up text styled as blue text without underline */
         .quit-button {
             margin-top: 20px;
-            padding: 10px 20px;
-            background-color: red;
-            color: white;
+            background: none;
+            color: blue;
             font-size: 1.2rem;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
+            text-decoration: none; /* Removes underline */
             display: none; /* Hide initially */
             opacity: 0; /* Initially set to 0 opacity */
             transition: opacity 0.25s ease; /* Smooth transition for opacity */
@@ -118,8 +118,8 @@
             font-size: 2rem;
             color: red;
             text-align: center;
-            display: none; /* Initially hidden */
-            cursor: pointer; /* Indicate it's clickable */
+            display: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -147,16 +147,14 @@
         <span class="slider-label">but at what cost</span>
     </div>
 
-    <!-- The button's text is now changed to 'I give up' -->
-    <button class="quit-button" id="quitButton" onclick="quitSequence()">I give up</button>
+    <!-- Text version of the button -->
+    <button class="quit-button" id="quitButton" onclick="quitSequence()">i give up</button>
 
-    <!-- Goodbye message div, initially hidden -->
     <div class="goodbye-message" id="goodbyeMessage">
-        <p>I give up, but I will always remember you and know that...</p>
+        <p>i give up, but I will always remember you and know that...</p>
     </div>
 
     <script>
-        // JavaScript
         const messages = ["i am loved", "but at what cost?"];
         let currentMessageIndex = 0;
 
@@ -166,7 +164,7 @@
             if (currentMessageIndex < messages.length) {
                 this.innerText = messages[currentMessageIndex];
             } else {
-                setTimeout(revealContent, 1000); // Delay before revealing content
+                setTimeout(revealContent, 1000);
             }
         };
 
@@ -175,7 +173,6 @@
             document.getElementById('controls').style.display = 'flex';
             document.getElementById('message').style.display = 'none';
 
-            // Show the 'I give up' button after the opening sequence
             document.getElementById('quitButton').style.display = 'block';
         }
 
@@ -216,32 +213,26 @@
         }
 
         function quitSequence() {
-            // Hide the media container and controls first
             document.getElementById('mediaContainer').style.display = 'none';
             document.getElementById('controls').style.display = 'none';
 
-            // Show the goodbye message
             document.getElementById('goodbyeMessage').style.display = 'block';
 
-            // Hide the 'I give up' button
             document.getElementById('quitButton').style.display = 'none';
         }
 
-        // Event listener to go back to the opening sequence when the goodbye message is clicked
         document.getElementById('goodbyeMessage').onclick = function() {
             resetSequence();
         };
 
         function resetSequence() {
-            // Reset the page to its initial state
             currentMessageIndex = 0;
             document.getElementById('message').innerText = messages[currentMessageIndex];
             document.getElementById('message').style.display = 'block';
 
-            document.getElementById('goodbyeMessage').style.display = 'none'; // Hide goodbye message
-            document.getElementById('quitButton').style.display = 'none'; // Hide 'I give up' button
+            document.getElementById('goodbyeMessage').style.display = 'none';
+            document.getElementById('quitButton').style.display = 'none';
 
-            // Hide the media container and controls
             document.getElementById('mediaContainer').style.display = 'none';
             document.getElementById('controls').style.display = 'none';
 
